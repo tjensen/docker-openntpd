@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: openntpd
+spec:
+  template:
+    metadata:
+      labels:
+        app: openntpd
+    spec:
+      containers:
+        - name: openntpd
+          image: tjensen/openntpd:alpine-3.5
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            capabilities:
+              add:
+                - SYS_TIME
